@@ -14,6 +14,19 @@ gem 'devise'
 gem 'haml-rails'
 gem 'puma'
 gem 'simple_form'
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
+gem 'inherited_resources'
+gem 'font-awesome-rails'
+gem 'rest-client'
+gem 'underscore-rails'
+gem 'dotenv-deployment'
+gem 'rolify'
+gem 'cancan'
+gem 'jquery-turbolinks'
+gem 'figaro'
+gem 'will_paginate', '~> 3.0'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
