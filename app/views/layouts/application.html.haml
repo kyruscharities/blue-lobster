@@ -1,15 +1,19 @@
 !!!
-%html
+%html{class: "#{controller_name} #{action_name}"}
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Blue Lobster'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Blue Lobster'}"}
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1.0'}
+    %title= content_for?(:title) ? yield(:title) : 'Rc Cb Cloud'
+    %meta{:name => 'description', :content => "#{content_for?(:description) ? yield(:description) : 'Cb Cloud'}"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
-  %body
-    %header
+
+    = yield(:head)
+
+  %body{class: "#{controller_name} #{action_name} #{'signed-in' if user_signed_in?} #{@body_classes}"}
+
+    - unless @no_navigation == true
       = render 'layouts/navigation'
-    %main{:role => "main"}
+
+    %main.container
       = render 'layouts/messages'
       = yield
