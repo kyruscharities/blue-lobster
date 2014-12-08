@@ -1,0 +1,16 @@
+.container-fluid
+    .row
+        .col-xs-1
+            %strong
+                ID
+        .col-xs-4
+            %strong
+                Company Name
+        .col-xs-4
+            %strong
+                Description
+    -@job_programs.each do |program|
+        .row
+            .col-xs-1 #{program.id}
+            .col-xs-4 #{program.name}
+            .col-xs-4 #{program.description}
