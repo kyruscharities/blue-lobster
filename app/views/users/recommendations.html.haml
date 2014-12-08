@@ -1,2 +1,6 @@
-Hello, #{@user.id}!
+.row
+  .col-xs-12
+    %h2.page-header Recommended jobs based on your skills
+
+    = render 'job_type_recommendations', job_types: @user.matching_job_types_by_skill_level
 

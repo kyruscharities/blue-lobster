@@ -1,8 +1,8 @@
-%nav.navbar.navbar-default.navbar-fixed-top
-  .container
+%nav.navbar.navbar-fixed-top
+  .standard.container
     .navbar-header
       .navbar-brand
-        %strong Blue Lobster
+        %strong Checkpoint Marshall
 
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
@@ -12,13 +12,17 @@
 
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
+        = render 'layouts/wordpress_site_header'
+
         -#- if can? :index, Organization
           %li= link_to 'Organizations', organizations_path
 
       %ul.nav.navbar-nav.pull-right
         - if user_signed_in?
           %li= link_to current_user.email, edit_user_registration_path
-          %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
+          %li
+            = link_to destroy_user_session_path, :method=>'delete' do
+              %i.fa.fa-sign-out
         - else
           %li= link_to 'Sign in', new_user_session_path
           %li= link_to 'Sign up', new_user_registration_path

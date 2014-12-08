@@ -1,0 +1,43 @@
+.row
+  .col-xs-12.col-sm-8.col-sm-offset-2
+    .profile-card
+      %h2.name= @user.name
+
+      %p
+        Email:
+        -if resource.email
+          = resource.email
+      %p
+        City:
+        -if resource.city
+          = resource.city
+      %p
+        State:
+        -if resource.state
+          = resource.state
+      %p
+        Zip code:
+        -if resource.zip
+          = resource.zip
+
+      %h4.page-header
+        Top 10
+        = link_to 'Skills', skills_user_path(@user)
+      = render 'skills_list', skills: @user.normalized_skills[0..10]
+
+      %h4.page-header
+        Top 10
+        = link_to 'Matching Job Types', recommendations_user_path(@user)
+      = render 'job_type_recommendations', job_types: @user.matching_job_types_by_skill_level[0..9]
+
+      %h4.page-header Matching Programs
+      .alert.alert-error TBD
+
+      %h4.page-header Questions You've Answered
+      - @user.answers.joins(:question).each do |answer|
+        .question
+          %blockquote
+            %p
+              #{answer.question.question}
+              %strong : #{answer.score}
+        -#%hr

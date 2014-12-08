@@ -16,13 +16,14 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "*.scss";
 @import url(http://fonts.googleapis.com/css?family=Montserrat:700,400|Open+Sans:400,600);
 
 $dark: #000;
 $floaty-box-padding: 20px;
 
 body {
-  background-color: #fff;
+  background-color: #003a79;
   color: #333;
   font-family: 'Montserrat', verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -34,15 +35,41 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 p, ol, ul, td {
-  font-family: 'Arial', arial, helvetica, sans-serif;
+  font-family: 'Montserrat', verdana, arial, helvetica, sans-serif !important;
   font-size: 13px;
   line-height: 18px;
 }
 
-nav.navbar-default {
+main {
+  @extend .container, .standard-container;
+  padding-top: 15px;
+  padding-bottom: 80px;
+  margin-top: 76px; // accommodate the navbar
+}
+
+.standard.container {
   background-color: white;
-  //  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
-  border-bottom: 2px solid #333;
+  width: 88%;
+  max-width: 1060px;
+}
+
+::selection {
+  text-shadow: none;
+  color: #7a7a7a;
+  background-color: #eee;
+}
+
+nav {
+  border-bottom: 1px solid #ccc;
+
+  .container {
+    background-color: white;
+    background-color: #fff;
+    z-index: 1030;
+    font-size: 14px;
+    font-size: 1.4rem;
+    box-shadow: 0 0.15em 0.35em 0 rgba(0, 0, 0, 0.135);
+  }
 
   .navbar-nav > li > a {
     line-height: 45px;
@@ -55,16 +82,17 @@ nav.navbar-default {
     }
   }
 
-  p, ol, ul, td {
-    // from FRA website
-    text-transform: uppercase;
-    font-family: 'Open Sans', verdana, arial, helvetica, sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: 600;
-    letter-spacing: -0.300000011920929px;
-  }
+  //
+  //  p, ol, ul, td {
+  //    // from FRA website
+  //    text-transform: uppercase;
+  //    font-family: 'Open Sans', verdana, arial, helvetica, sans-serif;
+  //    font-size: 12px;
+  //    font-style: normal;
+  //    font-variant: normal;
+  //    font-weight: 600;
+  //    letter-spacing: -0.300000011920929px;
+  //  }
 }
 
 .brand, nav.navbar-default .navbar-brand {
@@ -178,15 +206,6 @@ form input.button[type=submit] {
   @extend .btn-primary;
 }
 
-// apply styles to HTML elements
-// to make views framework-neutral
-main {
-  @extend .container;
-  padding-top: 15px;
-  padding-bottom: 80px;
-  margin-top: 76px; // accommodate the navbar
-}
-
 section {
   @extend .row;
   margin-top: 20px;
@@ -287,4 +306,11 @@ form .form-group label.checkbox {
 
 .authform {
   @extend .wide-floaty-box;
+}
+
+a {
+  color: #ff2a13;
+  text-decoration: none;
+  -webkit-transition: color 0.3s ease,background-color 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;
+  transition: color 0.3s ease,background-color 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;
 }

@@ -3,6 +3,9 @@
 
   .form-inputs
     = f.input :question, autofocus: true
+    = f.association :skills, collection: Skill.all, multiple: true
 
+  - @question.skill_values.each do |skill_value|
+    %p= link_to "#{skill_value.skill.name}: #{skill_value.weight}", edit_skill_value_path(skill_value)
   .form-actions
     = f.button :submit
