@@ -2,8 +2,6 @@ class QuestionsController < ApplicationController
   inherit_resources
   load_and_authorize_resource
 
-  custom_actions resource: [:answer]
-
   def index
     @answers = current_user.answers
 
@@ -14,6 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answer = Answer.for_question_and_user(@question, current_user) || Answer.new
+    @answer = Answer.for_question_and_user(@question, current_user) ||
+      Answer.new(score: 1)
   end
 end

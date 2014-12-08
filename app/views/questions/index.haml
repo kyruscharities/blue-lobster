@@ -10,6 +10,6 @@
       %td.col-xs-6= q.question
       %td.col-xs-1
         - if answer = @answers_by_question_id[q.id]
-          = link_to "Change", question_path(id: q.id)
+          = link_to "Change", edit_answer_path(answer, question_id: q.id)
         - else
-          = link_to "Answer", question_path(id: q.id)
+          = link_to "Answer", new_answer_path(q)

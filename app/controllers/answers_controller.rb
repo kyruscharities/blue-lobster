@@ -1,24 +1,20 @@
 class AnswersController < ApplicationController
-  def create
-    Answer.create!(params.merge({
-      question_id: params[:question_id],
-      user_id: current_user.id
-    }))
+  load_and_authorize_resource
+  inherit_resources
 
-    redirect_to question_path(params[:question_id])
-  end
+  #def update
+    #answer = Answer.find(answer_params[:id])
+    #answer.score = answer_params[:score]
+    #answer.save!
 
-  def update
-    answer = Answer.find(params[:id])
-    answer.score = params[:id]
-    answer.save!
-
-    redirect_to questions_path
-  end
+    #redirect_to questions_path
+  #end
 
   private
 
-  def params
-    super.require(:answer).permit(:id, :question_id, :score)
+  def answer_params
+    params.require(:answer).permit(:id, :question_id, :user_id, :score)
+    #parms[:score] = parms[:score].to_i
+    #parms
   end
 end

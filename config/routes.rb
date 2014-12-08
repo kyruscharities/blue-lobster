@@ -2,8 +2,12 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
   devise_for :users
 
-  resources :answers, only: [:create, :update]
-  resources :questions
+  resources :questions do
+    member do
+      resources :answers
+    end
+  end
+
   resources :users do
     member do
       get :recommendations
