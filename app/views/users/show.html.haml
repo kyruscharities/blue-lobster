@@ -14,11 +14,19 @@
       %p
         State:
         -if resource.state
-          = resource.state
+          = state_from_code(resource.state)
       %p
         Zip code:
         -if resource.zip
           = resource.zip
+      %p
+        Age:
+        -if resource.age_range
+          = resource.age_range
+      %p
+        Status:
+        -if resource.status
+          = resource.status
 
       %h4.page-header
         Top 10

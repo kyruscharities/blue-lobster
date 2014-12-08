@@ -57,4 +57,8 @@ module UsersHelper
     ]
   end
 
+  def state_from_code(code)
+    us_states.select{|key, value| value == code}.first.first
+  end
+
 end

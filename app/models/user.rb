@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
     get_job_types.sort_by { |key, value| value }.reverse
   end
 
-  validates_format_of :zip, :with => /\A\d{5}(-\d{4})?\z/, :message => "should be in the form 12345 or 12345-1234"
+  validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "should be in the form 12345 or 12345-1234", allow_nil: true
 
   private
 
