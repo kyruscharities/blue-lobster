@@ -5,6 +5,6 @@ class JobTypesController < ApplicationController
   private
 
   def job_type_params
-    params.require(:job_type).permit(:name, :description)
+    params.require(:job_type).permit(:name, :description, skill_ids: [])
   end
 end
