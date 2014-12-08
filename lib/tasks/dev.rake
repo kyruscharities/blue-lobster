@@ -2,6 +2,7 @@ namespace :dev do
   desc 'Sets the app up for development'
   task :setup => :environment do
     admin = User.find_or_create_by! email: 'admin@foo.com' do |u|
+      u.name ='administrator!!!'
       u.password = 'password'
       u.password_confirmation = 'password'
       u.zip = '12345'
