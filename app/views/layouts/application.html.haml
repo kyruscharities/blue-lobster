@@ -15,6 +15,10 @@
     - unless @no_navigation == true
       = render 'layouts/navigation'
 
-    %main.container
+    %main.standard.container
       = render 'layouts/messages'
       = yield
+
+    .standard.container{style: "border-top: 1px solid rgba(0, 0, 0, 0.085);"}
+      .col-xs-12
+        = render 'layouts/footer'
