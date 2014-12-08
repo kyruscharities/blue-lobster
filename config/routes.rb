@@ -8,5 +8,5 @@ Rails.application.routes.draw do
       get :recommendations
     end
   end
-  resources :job_type
+  resources :job_types
 end

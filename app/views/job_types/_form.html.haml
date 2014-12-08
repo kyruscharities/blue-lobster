@@ -1,0 +1,9 @@
+= simple_form_for(@job_type) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name, autofocus: true
+    = f.input :description, as: :text, input_html: {rows: 4}
+
+  .form-actions
+    = f.button :submit
