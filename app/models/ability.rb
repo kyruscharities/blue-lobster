@@ -19,5 +19,6 @@ class Ability
 
   def veteran
     can :index, Question
+    can :index, JobType
   end
 end
