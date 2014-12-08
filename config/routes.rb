@@ -14,13 +14,10 @@ Rails.application.routes.draw do
 
   resources :job_types
 
-<<<<<<< HEAD
   resources :job_programs
 
   namespace :admin do
     get :update_styles
   end
-=======
   resources :skill_values
->>>>>>> very ugly view to be able to assign skill values to questions
 end
