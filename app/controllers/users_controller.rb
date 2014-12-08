@@ -12,4 +12,9 @@ class UsersController < ApplicationController
       redirect_to :back, :alert => "Access denied."
     end
   end
+
+  def profile
+    @user = current_user
+    render 'show'
+  end
 end

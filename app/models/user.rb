@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :answers
+
   after_create :default_role
   
   def get_skill_buckets
@@ -21,6 +22,12 @@ class User < ActiveRecord::Base
     end
 
     return skill_buckets
+  end
+
+  def normalized_skills
+    skill_buckets = get_skill_buckets.sort_by{|k,v| v}.reverse
+    normalizer = 100.0 / skill_buckets.first.last
+    skill_buckets.collect {|k, v| [k, v, v * normalizer]}
   end
 
   def get_job_types

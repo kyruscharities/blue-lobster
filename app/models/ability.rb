@@ -21,6 +21,6 @@ class Ability
     can :index, Question
     can :index, JobType
     can :index, JobProgram
-    can [:recommendations, :show, :edit], User
+    can [:recommendations, :profile, :show, :edit], User, :user_id => @user.id
   end
 end

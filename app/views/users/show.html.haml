@@ -1,22 +1,39 @@
-%h3 User
+.row
+  .col-xs-12.col-sm-8.col-sm-offset-2
+    .profile-card
+      %h2.name= @user.name
 
-%p
-  Name:
-  -if resource.name
-    = resource.name
-%p
-  Email:
-  -if resource.email
-    = resource.email
-%p
-  City:
-  -if resource.city
-    = resource.city
-%p
-  State:
-  -if resource.state
-    = resource.state
-%p
-  Zip code:
-  -if resource.zip
-    = resource.zip
+      %p
+        Email:
+        -if resource.email
+          = resource.email
+      %p
+        City:
+        -if resource.city
+          = resource.city
+      %p
+        State:
+        -if resource.state
+          = resource.state
+      %p
+        Zip code:
+        -if resource.zip
+          = resource.zip
+
+      %h4.page-header Top 10 Skills
+      = render 'skills_list', skills: @user.normalized_skills[0..10]
+
+      %h4.page-header Matching Job Types
+      .alert.alert-error TBD
+
+      %h4.page-header Matching Programs
+      .alert.alert-error TBD
+
+      %h4.page-header Questions You've Answered
+      - @user.answers.joins(:question).each do |answer|
+        .question
+          %blockquote
+            %p
+              #{answer.question.question}
+              %strong : #{answer.score}
+        -#%hr
