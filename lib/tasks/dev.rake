@@ -4,6 +4,7 @@ namespace :dev do
     admin = User.find_or_create_by! email: 'admin@foo.com' do |u|
       u.password = 'password'
       u.password_confirmation = 'password'
+      u.zip = '12345'
     end
 
     admin.update! confirmed_at: Time.now
@@ -29,6 +30,7 @@ namespace :dev do
     user = User.find_or_create_by! email: email do |u|
       u.password = 'password'
       u.password_confirmation = 'password'
+      u.zip = '12345'
     end
     p "Created user #{user.inspect}"
 
