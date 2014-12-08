@@ -1,0 +1,10 @@
+= simple_form_for(@skill_value) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :weight
+    = f.association :question, label_method: :question
+    = f.association :skill
+
+  .form-actions
+    = f.button :submit

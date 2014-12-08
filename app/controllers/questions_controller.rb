@@ -10,4 +10,10 @@ class QuestionsController < ApplicationController
       @answers_by_question_id[a.question_id] = a
     end
   end
+
+  private
+
+  def question_params
+    params.require(:question).permit(:question, skill_ids: [])
+  end
 end
