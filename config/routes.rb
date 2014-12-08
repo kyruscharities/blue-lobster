@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :questions do
-    member do
-      resources :answers
-    end
+    resources :answers
   end
 
   resources :users do

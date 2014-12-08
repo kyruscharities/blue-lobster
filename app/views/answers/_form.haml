@@ -1,5 +1,7 @@
-= simple_form_for @answer, url: question_answers_path(question_id: @question.id) do |f|
+= simple_form_for [@question, @answer] do |f|
   = f.error_notification
 
-  = f.input :score, collection: [1, 2, 3, 4, 5], as: :radio_buttons, checked: 1
-  = f.submit "Answer"
+  = f.input :score, collection: [1, 2, 3, 4, 5], as: :radio_buttons
+  = f.association :question
+  = f.association :user, label_method: :email
+  = f.submit 'Answer'
