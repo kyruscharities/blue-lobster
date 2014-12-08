@@ -1,7 +1,9 @@
 class Answer < ActiveRecord::Base
   belongs_to :user
-  belongs_to :question
+  validates_presence_of :user
 
-  validates :user_id, presence: true
-  validates :question_id, presence: true
+  belongs_to :question
+  validates_presence_of :question
+
+  validates_numericality_of :score, greater_than: 0, less_than_or_equal_to: 5
 end
