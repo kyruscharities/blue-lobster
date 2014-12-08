@@ -27,6 +27,10 @@
         Status:
         -if resource.status
           = resource.status
+      %p
+        Services:
+        -if resource.services
+          = resource.services.reject { |x| x.empty? }.join(', ')
 
       %h4.page-header
         Top 10

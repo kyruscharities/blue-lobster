@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :answers
+  serialize :services, Array
+
+  validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "should be in the form 12345 or 12345-1234", allow_nil: true
 
   after_create :default_role
 
@@ -55,8 +58,6 @@ class User < ActiveRecord::Base
   def matching_job_types_by_skill_level
     get_job_types.sort_by { |key, value| value }.reverse
   end
-
-  validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "should be in the form 12345 or 12345-1234", allow_nil: true
 
   private
 

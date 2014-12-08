@@ -10,6 +10,6 @@
 
     = f.input :age_range, as: :radio_buttons, collection: ['18-25', '26-35', '35-45', '46-55', '56-65', '66+']
     = f.input :status, as: :radio_buttons, collection: ['Active Duty', 'Reserves', 'Veteran', 'Family member']
-
+    = f.input :services, as: :check_boxes, collection: ['Army', 'Marines', 'Navy', 'Air Force', 'Coast Guard', 'National Guard']
   .form-actions
     = f.button :submit
