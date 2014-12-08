@@ -1,4 +1,4 @@
 class Skill < ActiveRecord::Base
   validates_presence_of :name
-  belongs_to :job_type
+  has_and_belongs_to_many :job_types
 end
