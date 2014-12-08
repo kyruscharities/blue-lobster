@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   rolify
   include Gravtastic
-  gravtastic
+  gravtastic size: 300
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

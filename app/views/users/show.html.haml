@@ -1,36 +1,42 @@
 .row
   .col-xs-12.col-sm-8.col-sm-offset-2
     .profile-card
-      = image_tag @user.gravatar_url
+      .row
+        .col-xs-12.col-sm-4
+          .pic= image_tag @user.gravatar_url
 
-      %h2.page-header= @user.name
+        .col-xs-12.col-sm-8
+          %h2.name
+            = @user.name
+            %span.pull-right
+              = link_to edit_user_path(@user), class: 'btn btn-sm btn-info' do
+                %i.fa.fa-pencil
+                Edit
 
-      %p
-        Email:
-        -if resource.email
-          = resource.email
+          %p
+            %em
+              Located at
+              - if resource.city
+                #{resource.city},
+              - if resource.state
+                #{state_from_code(resource.state) },
+              - if resource.zip
+                #{resource.zip}
 
-      %p
-        %em
-          - if resource.city
-            #{resource.city},
-          - if resource.state
-            #{state_from_code(resource.state) },
-          - if resource.zip
-            #{resource.zip}
+          - if resource.age_range?
+            %p
+              Age:
+              = resource.age_range
 
-      %p
-        Age:
-        -if resource.age_range
-          = resource.age_range
-      %p
-        Status:
-        -if resource.status
-          = resource.status
-      %p
-        Services:
-        -if resource.services
-          = resource.services.reject { |x| x.empty? }.join(', ')
+          - if resource.status?
+            %p
+              Status:
+              = resource.status
+
+          - if resource.services?
+            %p
+              Services:
+              = resource.services.reject { |x| x.empty? }.join(', ')
 
       %h4.page-header
         Top 10

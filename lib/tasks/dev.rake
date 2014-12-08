@@ -16,8 +16,8 @@ namespace :dev do
     make_questions
     make_programs
 
-    make_user 'user@foo.com'
-    make_user 'user@bar.com'
+    make_user 'brian@redcanary.co'
+    make_user 'chris@redcanary.co'
 
     p "#{Skill.count} Skills"
     p "#{JobType.count} Job Types"
