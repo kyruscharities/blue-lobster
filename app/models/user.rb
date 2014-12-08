@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
     return job_buckets 
   end
 
+  validates_format_of :zip, :with => /\A\d{5}(-\d{4})?\z/, :message => "should be in the form 12345 or 12345-1234"
+
   private
 
   def default_role

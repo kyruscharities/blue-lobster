@@ -1,0 +1,22 @@
+%h3 User
+
+%p
+  Name:
+  -if resource.name
+    = resource.name
+%p
+  Email:
+  -if resource.email
+    = resource.email
+%p
+  City:
+  -if resource.city
+    = resource.city
+%p
+  State:
+  -if resource.state
+    = resource.state
+%p
+  Zip code:
+  -if resource.zip
+    = resource.zip
