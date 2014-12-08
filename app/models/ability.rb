@@ -18,6 +18,6 @@ class Ability
   end
 
   def veteran
-    
+    can :index, Question
   end
 end
