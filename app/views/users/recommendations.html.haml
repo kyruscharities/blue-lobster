@@ -1,23 +1,6 @@
-- user_name = @user.name
-- user_name = "there" if user_name.nil? || user_name.empty?
-<p>Hello, #{user_name}!</p>
-
-<p>We've done some research based on your answers to the questions and have come up with this list of possible job types:</p>
-
 .row
-  .col-xs-1
-    &nbsp;
-  .col-xs-6
-    Job Type
-  .col-xs-2
-    Skill value
+  .col-xs-12
+    %h2.page-header Recommended jobs based on your skills
 
-- @user.get_job_types.sort_by { |key, value| value }.reverse.each do |job_type, value|
-  .row
-    .col-xs-1
-      &nbsp;
-    .col-xs-6
-      = link_to job_type.name, job_type
-    .col-xs-2
-      = value
+    = render 'job_type_recommendations', job_types: @user.matching_job_types_by_skill_level
 

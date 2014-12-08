@@ -20,11 +20,15 @@
         -if resource.zip
           = resource.zip
 
-      %h4.page-header Top 10 Skills
+      %h4.page-header
+        Top 10
+        = link_to 'Skills', skills_user_path(@user)
       = render 'skills_list', skills: @user.normalized_skills[0..10]
 
-      %h4.page-header Matching Job Types
-      .alert.alert-error TBD
+      %h4.page-header
+        Top 10
+        = link_to 'Matching Job Types', recommendations_user_path(@user)
+      = render 'job_type_recommendations', job_types: @user.matching_job_types_by_skill_level[0..9]
 
       %h4.page-header Matching Programs
       .alert.alert-error TBD
