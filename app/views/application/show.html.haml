@@ -1,0 +1,15 @@
+:javascript
+  $(document).ready(function() {
+    $("form :input").prop("disabled", true);
+    $("form .actions").hide();
+  })
+
+.wide-floaty-box
+  %h1.page-header
+    #{resource.respond_to?(:name) ? resource.name : "Viewing #{resource.class.name.underscore.humanize.titleize}"}
+
+    %span.pull-right
+      - if can? :edit, resource
+        = link_to 'Edit', send("edit_#{resource.class.name.underscore}_path", resource)
+
+  = render 'form'
