@@ -1,9 +1,0 @@
-%h2= @question.question
-
-= simple_form_for @answer, url: question_answers_path(question_id: @question.id) do |f|
-  = f.error_notification
-
-  = f.input :score, collection: [1, 2, 3, 4, 5], as: :radio_buttons
-  = f.association :question
-  = f.association :user
-  = f.submit "Answer"
