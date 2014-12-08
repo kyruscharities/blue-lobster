@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
   devise_for :users
 
+  resources :questions do
+    resources :answers
+  end
+
   get '/profile' => 'users#profile'
 
-  resources :questions
 
   resources :users do
     member do
