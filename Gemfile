@@ -24,6 +24,7 @@ gem 'cancan'
 gem 'jquery-turbolinks'
 gem 'figaro'
 gem 'will_paginate', '~> 3.0'
+gem 'gravtastic'
 
 group :development do
   gem 'better_errors'

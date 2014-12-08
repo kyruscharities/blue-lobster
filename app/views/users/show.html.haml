@@ -1,24 +1,24 @@
 .row
   .col-xs-12.col-sm-8.col-sm-offset-2
     .profile-card
-      %h2.name= @user.name
+      = image_tag @user.gravatar_url
+
+      %h2.page-header= @user.name
 
       %p
         Email:
         -if resource.email
           = resource.email
+
       %p
-        City:
-        -if resource.city
-          = resource.city
-      %p
-        State:
-        -if resource.state
-          = state_from_code(resource.state)
-      %p
-        Zip code:
-        -if resource.zip
-          = resource.zip
+        %em
+          - if resource.city
+            #{resource.city},
+          - if resource.state
+            #{state_from_code(resource.state) },
+          - if resource.zip
+            #{resource.zip}
+
       %p
         Age:
         -if resource.age_range

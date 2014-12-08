@@ -28,6 +28,7 @@ namespace :dev do
 
   def make_user(email)
     user = User.find_or_create_by! email: email do |u|
+      u.name = Faker::Name.name
       u.password = 'password'
       u.password_confirmation = 'password'
       u.zip = '12345'

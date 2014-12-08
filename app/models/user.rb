@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   rolify
+  include Gravtastic
+  gravtastic
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -8,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :answers
 
   after_create :default_role
+
+  validates_presence_of :name
   
   def get_skill_buckets
     skill_buckets = Hash.new 0
