@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     end
   end
   resources :job_types
+  resources :job_programs
 end
