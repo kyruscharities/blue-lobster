@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :questions
-  resources :users
+  resources :users do
+    member do
+      get :recommendations
+    end
+  end
   resources :job_type
 end

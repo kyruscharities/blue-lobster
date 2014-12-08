@@ -20,5 +20,6 @@ class Ability
   def veteran
     can :index, Question
     can :index, JobType
+    can :recommendations, User
   end
 end
