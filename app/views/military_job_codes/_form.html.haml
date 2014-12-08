@@ -1,0 +1,14 @@
+= simple_form_for(@military_job_code) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :service
+    = f.input :mpc
+    = f.input :status
+    = f.input :code
+    = f.input :title
+    = f.input :onetcode
+    = f.input :onettitle
+
+  .form-actions
+    = f.button :submit

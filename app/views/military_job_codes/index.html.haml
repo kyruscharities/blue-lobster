@@ -1,0 +1,33 @@
+%h1 Listing military_job_codes
+
+%table
+  %thead
+    %tr
+      %th Service
+      %th Mpc
+      %th Status
+      %th Code
+      %th Title
+      %th Onetcode
+      %th Onettitle
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @military_job_codes.each do |military_job_code|
+      %tr
+        %td= military_job_code.service
+        %td= military_job_code.mpc
+        %td= military_job_code.status
+        %td= military_job_code.code
+        %td= military_job_code.title
+        %td= military_job_code.onetcode
+        %td= military_job_code.onettitle
+        %td= link_to 'Show', military_job_code
+        %td= link_to 'Edit', edit_military_job_code_path(military_job_code)
+        %td= link_to 'Destroy', military_job_code, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Military job code', new_military_job_code_path

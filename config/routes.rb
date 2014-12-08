@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :military_job_codes
+
   get 'admin/update_styles'
 
   root to: 'visitors#index'

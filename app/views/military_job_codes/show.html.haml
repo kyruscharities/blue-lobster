@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Service:
+  = @military_job_code.service
+%p
+  %b Mpc:
+  = @military_job_code.mpc
+%p
+  %b Status:
+  = @military_job_code.status
+%p
+  %b Code:
+  = @military_job_code.code
+%p
+  %b Title:
+  = @military_job_code.title
+%p
+  %b Onetcode:
+  = @military_job_code.onetcode
+%p
+  %b Onettitle:
+  = @military_job_code.onettitle
+
+= link_to 'Edit', edit_military_job_code_path(@military_job_code)
+\|
+= link_to 'Back', military_job_codes_path

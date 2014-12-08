@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208212848) do
+ActiveRecord::Schema.define(version: 20141208224919) do
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20141208212848) do
   create_table "job_types_skills", force: true do |t|
     t.integer "job_type_id"
     t.integer "skill_id"
+  end
+
+  create_table "military_job_codes", force: true do |t|
+    t.string   "service"
+    t.string   "mpc"
+    t.string   "status"
+    t.string   "code"
+    t.text     "title"
+    t.string   "onetcode"
+    t.text     "onettitle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "questions", force: true do |t|
