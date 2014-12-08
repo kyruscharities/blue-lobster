@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :answers
+  after_create :default_role
+
+  private
+
+  def default_role
+    add_role :veteran
+  end
 end
