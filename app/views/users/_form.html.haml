@@ -4,8 +4,7 @@
   .form-inputs
     = f.input :name
     = f.input :city
-    = f.label 'State'
-    = f.select :state, options_for_select(us_states)
+    = f.input :state, collection: us_states
     = f.input :zip
 
     = f.input :age_range, as: :radio_buttons, collection: ['18-25', '26-35', '35-45', '46-55', '56-65', '66+']

@@ -33,6 +33,13 @@ namespace :dev do
       u.password = 'password'
       u.password_confirmation = 'password'
       u.zip = '12345'
+      u.city = 'Omaha'
+      u.state = 'NE'
+      u.age_range = '46-55'
+      u.status = 'Reserves'
+      u.services = ['Army', '']
+      u.support_goals = ['Service disability support', 'Families of fallen soldier support', '']
+      u.support_goals_freeform = 'Learn how to do more things. Read more. Eat better.'
     end
     p "Created user #{user.inspect}"
 
