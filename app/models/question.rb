@@ -10,4 +10,17 @@ class Question < ActiveRecord::Base
   def answer_for!(user, options={})
     answers.create! options.merge({user: user})
   end
+
+  def answer_for(user)
+    answers.find_by_user_id(user.id)
+  end
+
+  def self.answered_by(user)
+    includes(:answers).where(answers: { user_id: user.id }).order(:id)
+  end
+
+  def self.unanswered_by(user)
+    answered = answered_by(user).ids
+    includes(:answers).order(:id).reject { |q| answered.include? q.id }
+  end
 end

@@ -21,10 +21,12 @@
     %table.table.table-bordered.table-striped
       %thead
         %th Program
+        %th Resource Type
         %th Description
       
-      - resource.job_programs.each do |program|
+      - resource.programs.each do |program|
         %tr
           %td 
-            = link_to "#{program.name}", program 
+            = link_to "#{program.name}", program
+          %td #{program.resource_type}
           %td #{program.description}

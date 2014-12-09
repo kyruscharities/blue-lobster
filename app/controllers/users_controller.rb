@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
+    @unanswered_questions = Question.unanswered_by(current_user)
+    @answered_questions = Question.answered_by(current_user)
     render 'show'
   end
 
@@ -36,8 +38,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :city, :state, :zip, :age_range, :status, :gender,
-                                 :support_goals_freeform, :certifications, services: [], support_goals: [])
+    params.require(:user).permit(:name, :city, :state, :zip, :age_range, :status, :gender, :support_goals_freeform,
+                                 :certifications, :military_job_codes, services: [], support_goals: [])
   end
 
   def set_profile_complete

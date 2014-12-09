@@ -28,7 +28,7 @@ namespace :dev do
     p "#{JobType.count} Job Types"
     p "#{Question.count} Questions"
     p "#{Answer.count} Answers"
-    p "#{JobProgram.count} Programs"
+    p "#{Program.count} Programs"
     p "#{User.count} Users"
   end
 
@@ -46,6 +46,7 @@ namespace :dev do
       u.services = [User::SERVICES.sample]
       VeteranSupportGoal.all.shuffle[0..rand(5)].each { |goal| u.veteran_support_goals << goal }
       Certification.all.shuffle[0..rand(5)].each { |cert| u.certifications << cert }
+      MilitaryJobCode.all.shuffle[0..rand(5)].each { |job| u.military_job_codes << job }
       u.support_goals_freeform = 'Learn how to do more things. Read more. Eat better.'
     end
     p "Created user #{user.inspect}"
@@ -96,9 +97,10 @@ namespace :dev do
 
   def make_programs
     50.times do
-      JobProgram.find_or_create_by! name: Faker::Company.name do |p|
+      Program.find_or_create_by! name: Faker::Company.name do |p|
         p.description = Faker::Company.bs
         5.times do
+          p.resource_type = 'Job'
           p.job_types << JobType.all.sample
         end
       end
