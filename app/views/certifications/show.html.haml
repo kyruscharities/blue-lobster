@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @certification.name
+%p
+  %b Category:
+  = @certification.category
+%p
+  %b Post nominal:
+  = @certification.post_nominal
+
+= link_to 'Edit', edit_certification_path(@certification)
+\|
+= link_to 'Back', certifications_path
