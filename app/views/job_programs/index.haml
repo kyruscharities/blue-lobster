@@ -8,19 +8,32 @@
                 Company Name
         .col-xs-4
             %strong
-                Description
-        .col-xs-1
-            %strong
-                Types
-        .col-xs-1
-            %strong
-                Skills
+                Company Description
     -@job_programs.each do |program|
         .row
             .col-xs-1 #{program.id}
             .col-xs-4 #{program.name}
             .col-xs-4 #{program.description}
-            .col-xs-1 #{@job_types_by_id[program.id].size}
-            .col-xs-1
-                -@job_skills_by_id[program.id].each do |job|
-                    #{job.name}
+        .row 
+        .container
+            .row
+                .col-xs-1
+                    %strong
+                        ID
+                .col-xs-3
+                    %strong
+                        Job Name
+                .col-xs-3
+                    %strong
+                        Job Description
+                .col-xs-3
+                    %strong
+                        Skills
+            -@job_types_by_id[program.id].each do |job|
+                .row
+                    .col-xs-1 #{job.id}
+                    .col-xs-3 #{job.name}
+                    .col-xs-3 #{job.description}
+                    .col-xs-3
+                        -job.skills.each do |skill|
+                            #{skill.name}
