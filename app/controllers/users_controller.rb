@@ -28,8 +28,7 @@ class UsersController < ApplicationController
         if @user.answered_questions?
           redirect_to profile_path
         else
-          # TODO: Change this to answers_path when it's a thing
-          redirect_to questions_path
+          redirect_to answer_questions_path
         end
       end
     end
