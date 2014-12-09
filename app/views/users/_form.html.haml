@@ -11,9 +11,9 @@
     = f.input :gender, as: :radio_buttons, collection: User::GENDERS
     = f.input :status, as: :radio_buttons, collection: User::STATUSES
     = f.input :services, as: :check_boxes, collection: User::SERVICES
-    = f.input :veteran_support_goals, as: :check_boxes, collection: VeteranSupportGoal.all.order(:description), label_method: :description
+    = f.association :veteran_support_goals, as: :check_boxes, collection: VeteranSupportGoal.all.order(:description), label_method: :description
     = f.input :support_goals_freeform, label: nil
-    = f.input :certifications, as: :check_boxes, collection: Certification.all.order(:name), label_method: :friendly_name
+    = f.association :certifications, as: :check_boxes, collection: Certification.all.order(:name), label_method: :friendly_name
 
   .form-actions
     = f.button :submit
