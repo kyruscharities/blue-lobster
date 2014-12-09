@@ -8,7 +8,7 @@
   .col-xs-12
     %h4.page-header
       Skills Required
-      
+
     %ul
       - resource.skills.each do |skill|
         %li 
@@ -17,14 +17,14 @@
   .col-xs-12
     %h4.page-header
       Available Programs and Resources
-      
+
     %table.table.table-bordered.table-striped
       %thead
         %th Program
         %th Resource Type
         %th Description
       
-      - resource.programs.each do |program|
+      - resource.programs.where(published: true, resource_type: 'Job').each do |program|
         %tr
           %td 
             = link_to "#{program.name}", program

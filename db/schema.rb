@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20141209204144) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resource_type"
-    t.boolean  "published",     default: true
+    t.boolean  "published",     default: false
   end
 
   create_table "programs_job_types", force: true do |t|
