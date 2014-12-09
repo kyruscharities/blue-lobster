@@ -40,6 +40,10 @@
                   %li{:class => 'dropdown'}
                     = link_to 'Users', users_path
 
+                - if can? :index, Certification
+                  %li{:class => 'dropdown'}
+                    = link_to 'Certifications', certifications_path
+
                 - if can? :index, MilitaryJobCode
                   %li{:class => 'dropdown'}
                     = link_to 'MOS Codes', military_job_codes_path
