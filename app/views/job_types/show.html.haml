@@ -4,6 +4,7 @@
       #{resource.name}
     %p
       #{resource.description}
+  
   .col-xs-12
     %h4.page-header
       Skills Required
@@ -12,7 +13,7 @@
       - resource.skills.each do |skill|
         %li 
           #{skill.name}
-
+  
   .col-xs-12
     %h4.page-header
       Available Programs and Resources
