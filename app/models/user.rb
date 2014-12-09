@@ -116,8 +116,7 @@ class User < ActiveRecord::Base
           user.email_interval_last = Time.now
         end
         if (user.email_interval_last + user.email_interval.days) < Time.now
-          # TODO uncomment me for message delivery
-          #ProgramMailer.program_mailer(user).deliver
+          ProgramMailer.program_mailer(user).deliver
           user.email_interval_last = Time.now
         end
       end

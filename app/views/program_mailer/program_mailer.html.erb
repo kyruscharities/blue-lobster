@@ -1,1 +1,8 @@
-words!
+Hello <%= @user.name %>!
+
+We have a list of the top 10 recommended job types for you:
+<% @user.matching_job_types_by_skill_level.first(10).each do |job| %>
+    <%= job[0].name %>
+<% end %>
+
+Thank you!
