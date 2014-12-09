@@ -26,6 +26,7 @@ gem 'figaro'
 gem 'will_paginate', '~> 3.0'
 gem 'gravtastic'
 gem 'faker'
+gem 'pg'
 
 group :development do
   gem 'better_errors'
@@ -41,10 +42,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rspec-rails'
-  gem 'sqlite3'
 end
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 group :test do
