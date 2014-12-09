@@ -46,6 +46,7 @@ namespace :dev do
       u.services = [User::SERVICES.sample]
       VeteranSupportGoal.all.shuffle[0..rand(5)].each { |goal| u.veteran_support_goals << goal }
       Certification.all.shuffle[0..rand(5)].each { |cert| u.certifications << cert }
+      MilitaryJobCode.all.shuffle[0..rand(5)].each { |job| u.military_job_codes << job }
       u.support_goals_freeform = 'Learn how to do more things. Read more. Eat better.'
     end
     p "Created user #{user.inspect}"

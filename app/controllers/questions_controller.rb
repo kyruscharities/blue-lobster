@@ -2,6 +2,13 @@ class QuestionsController < ApplicationController
   inherit_resources
   load_and_authorize_resource
 
+  custom_actions collection: :answer
+
+  def answer
+    @unanswered_questions = Question.unanswered_by(current_user)
+    @answered_questions = Question.answered_by(current_user)
+  end
+
   def index
     @answers = current_user.answers
 

@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_and_belongs_to_many :certifications
   has_and_belongs_to_many :veteran_support_goals
+  has_and_belongs_to_many :military_job_codes
   serialize :services, Array
 
   validates_presence_of :gender, if: :veteran?

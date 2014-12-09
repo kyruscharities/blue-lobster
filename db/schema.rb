@@ -74,6 +74,11 @@ ActiveRecord::Schema.define(version: 20141209194910) do
     t.integer "job_type_id"
   end
 
+  create_table "military_job_codes_users", force: true do |t|
+    t.integer "military_job_code_id"
+    t.integer "user_id"
+  end
+
   create_table "questions", force: true do |t|
     t.text     "question",   null: false
     t.datetime "created_at"
@@ -129,7 +134,6 @@ ActiveRecord::Schema.define(version: 20141209194910) do
     t.string   "age_range"
     t.string   "status"
     t.text     "services"
-    t.text     "job_codes"
     t.text     "support_goals_freeform"
     t.boolean  "profile_complete",       default: false
     t.string   "gender"

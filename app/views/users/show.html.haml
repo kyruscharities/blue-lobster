@@ -41,7 +41,12 @@
           - if resource.certifications.length != 0
             %p
               Certifications:
-              = resource.certifications.collect(&:name).join(', ')
+              = resource.certifications.collect(&:friendly_name).join(', ')
+
+          - if resource.military_job_codes.length != 0
+            %p
+              Military jobs:
+              = resource.military_job_codes.collect(&:friendly_name).join(', ')
 
       %h4.page-header
         Top 10
