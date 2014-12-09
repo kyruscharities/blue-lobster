@@ -1,3 +1,5 @@
+require 'faker'
+
 namespace :dev do
   desc 'Sets the app up for development'
   task :setup => :environment do
