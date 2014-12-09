@@ -9,6 +9,10 @@
     = f.input :title
     = f.input :onetcode
     = f.input :onettitle
+    = f.association :skills, collection: Skill.all, multiple: true
+
+    - resource.skill_values.each do |skill_value|
+      %p= link_to "#{skill_value.skill.name}: #{skill_value.weight}", edit_skill_value_path(skill_value)
 
   .form-actions
     = f.button :submit
