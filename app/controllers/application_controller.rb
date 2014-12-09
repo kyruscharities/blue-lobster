@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
         # they've already completed their profile, see if they've answered questions already
         if current_user.answered_questions?
           # they've already answered questions, so just show them their profile
-          user_path current_user
+          profile_path
         else
           # they haven't answered questions yet so have them answer them
           # TODO: Change this answers_path when that is a thing

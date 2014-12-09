@@ -13,13 +13,20 @@ class UsersController < ApplicationController
     render 'show'
   end
 
+  def profile_card
+    @user = current_user
+    @unanswered_questions = Question.unanswered_by(current_user)
+    @answered_questions = Question.answered_by(current_user)
+    render '_profile_card', layout: false
+  end
+
   def update
     update! do |success, failure|
       success.html do
         @user.update! profile_complete: true
 
         if @user.answered_questions?
-          redirect_to user_path(@user)
+          redirect_to profile_path
         else
           # TODO: Change this to answers_path when it's a thing
           redirect_to questions_path
