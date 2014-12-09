@@ -1,21 +1,28 @@
-- collection.each_slice(2) do |slice|
-  .row
-    - slice.each do |resource|
-      .col-xs-12.col-sm-6
-        %h3.page-header
-          = link_to resource.name, resource
-          %span.pull-right
-            = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-xs btn-info'
-            = link_to 'Delete', resource, method: 'delete', class: 'btn btn-xs btn-danger'
+.row
+  .col-xs-12
+    %h2.page-header
+      #{resource_class.name.underscore.humanize.titleize.pluralize}
+      %span.pull-right
+        = link_to 'New', new_resource_path, class: 'btn btn-primary'
 
-        .row
+    - collection.order(:name).each_slice(2) do |slice|
+      .row
+        - slice.each do |resource|
           .col-xs-12.col-sm-6
-            %p
-              %em= resource.description
-          .col-xs-12.col-sm-6
-            %strong Requires skills
-            %ul
-              - resource.skills.each do |skill|
-                %li #{skill.name}
-        %hr
+            %h3.page-header
+              = link_to resource.name, resource
+              %span.pull-right
+                = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-xs btn-info'
+                = link_to 'Delete', resource, method: 'delete', class: 'btn btn-xs btn-danger'
+
+            .row
+              .col-xs-12.col-sm-6
+                %p
+                  %em= resource.description
+              .col-xs-12.col-sm-6
+                %strong Requires skills
+                %ul
+                  - resource.skills.each do |skill|
+                    %li #{skill.name}
+            %hr
 

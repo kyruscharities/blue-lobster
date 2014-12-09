@@ -1,0 +1,2 @@
+module VeteranSupportGoalsHelper
+end

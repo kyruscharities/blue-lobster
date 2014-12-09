@@ -11,9 +11,8 @@
     = f.input :status, as: :radio_buttons, collection: ['Active Duty', 'Reserves', 'Veteran', 'Family member']
     = f.input :services, as: :check_boxes, collection: ['Army', 'Marines', 'Navy', 'Air Force', 'Coast Guard',
      'National Guard']
-    = f.input :support_goals, as: :check_boxes, collection: ['Education support', 'Transition support',
-     'Job search support', 'Housing support', 'Financial management support', 'Service disability support',
-     'Families of fallen soldier support']
-    = f.input :support_goals_freeform
+    = f.input :support_goals, as: :check_boxes, collection: VeteranSupportGoal.all
+    = f.input :support_goals_freeform, label: nil
+
   .form-actions
     = f.button :submit

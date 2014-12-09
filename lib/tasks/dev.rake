@@ -27,6 +27,12 @@ namespace :dev do
     p "#{Answer.count} Answers"
     p "#{JobProgram.count} Programs"
     p "#{User.count} Users"
+
+    ['Education support', 'Transition support',
+     'Job search support', 'Housing support', 'Financial management support', 'Service disability support',
+     'Families of fallen soldier support'].each do |x|
+      VeteranSupportGoal.find_or_create_by! description: x
+    end
   end
 
   def make_user(email)

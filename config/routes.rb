@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :certifications
+  resources :veteran_support_goals
 
   resources :military_job_codes
 
