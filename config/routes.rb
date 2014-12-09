@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :job_types
 
-  resources :job_programs
+  resources :programs
 
   namespace :admin do
     get :update_styles

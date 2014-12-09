@@ -28,7 +28,7 @@ namespace :dev do
     p "#{JobType.count} Job Types"
     p "#{Question.count} Questions"
     p "#{Answer.count} Answers"
-    p "#{JobProgram.count} Programs"
+    p "#{Program.count} Programs"
     p "#{User.count} Users"
   end
 
@@ -96,7 +96,7 @@ namespace :dev do
 
   def make_programs
     50.times do
-      JobProgram.find_or_create_by! name: Faker::Company.name do |p|
+      Program.find_or_create_by! name: Faker::Company.name do |p|
         p.description = Faker::Company.bs
         5.times do
           p.job_types << JobType.all.sample
