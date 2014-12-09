@@ -28,7 +28,7 @@ class ProgramsController < ApplicationController
     private
 
     def job_program_params
-        params.require(:job_program).permit(:name, :description, :published)
+        params.require(:job_program).permit(:name, :description, :published, job_type_ids: [])
     end
 
 end
