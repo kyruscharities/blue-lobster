@@ -38,6 +38,16 @@
               Services:
               = resource.services.reject { |x| x.empty? }.join(', ')
 
+          - if resource.support_goals?
+            %p
+              Support goals:
+              = resource.support_goals.reject { |x| x.empty? }.join(', ')
+
+          -if resource.support_goals_freeform?
+            %blockquote
+              %p
+                = resource.support_goals_freeform
+
       %h4.page-header
         Top 10
         = link_to 'Skills', skills_user_path(@user)
