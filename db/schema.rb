@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209170002) do
+ActiveRecord::Schema.define(version: 20141209190514) do
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 20141209170002) do
     t.text     "support_goals_freeform"
     t.boolean  "profile_complete",       default: false
     t.string   "gender"
+    t.integer  "email_interval"
+    t.datetime "email_interval_last"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
