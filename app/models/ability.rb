@@ -18,7 +18,7 @@ class Ability
   end
 
   def veteran
-    can [:create, :update], Answer
+    can [:create, :edit, :show, :update], Answer
     can [:index, :show], Question
     can [:index, :show], JobType
     can [:index, :show], JobProgram
