@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209162212) do
+ActiveRecord::Schema.define(version: 20141209161014) do
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -125,9 +125,11 @@ ActiveRecord::Schema.define(version: 20141209162212) do
     t.string   "age_range"
     t.string   "status"
     t.text     "services"
+    t.text     "certifications"
     t.text     "job_codes"
     t.text     "support_goals"
     t.text     "support_goals_freeform"
+    t.boolean  "profile_complete",       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -36,8 +36,12 @@ class User < ActiveRecord::Base
 
   def normalized_skills
     skill_buckets = get_skill_buckets.sort_by{|k,v| v}.reverse
-    normalizer = 100.0 / skill_buckets.first.last
-    skill_buckets.collect {|k, v| [k, v, v * normalizer]}
+    if skill_buckets.empty?
+      []
+    else
+      normalizer = 100.0 / skill_buckets.first.last
+      skill_buckets.collect {|k, v| [k, v, v * normalizer]}
+    end
   end
 
   def get_job_types
@@ -59,6 +63,10 @@ class User < ActiveRecord::Base
 
   def matching_job_types_by_skill_level
     get_job_types.sort_by { |key, value| value }.reverse
+  end
+
+  def answered_questions?
+    answers.present?
   end
 
   private

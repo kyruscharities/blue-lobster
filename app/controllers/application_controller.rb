@@ -18,7 +18,25 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    users_path + "/" + current_user.id.to_s
+    if current_user.has_role? :admin
+      questions_path
+    else
+      if current_user.profile_complete
+        # they've already completed their profile, see if they've answered questions already
+        if current_user.answered_questions?
+          # they've already answered questions, so just show them their profile
+          user_path current_user
+        else
+          # they haven't answered questions yet so have them answer them
+          # TODO: Change this answers_path when that is a thing
+          #answers_path
+          questions_path
+        end
+      else
+        # if they have never saved their profile before, have them do that
+        edit_user_path current_user
+      end
+    end
   end
 
   def after_sign_out_path_for(resource)
