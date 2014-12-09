@@ -5,8 +5,16 @@
   .answer.col-xs-6.pull-right
     - answer = question.answer_for(current_user) || Answer.new
     = simple_form_for [question, answer] do |f|
-      = f.input :score,
-        label: false,
-        collection: [1, 2, 3, 4, 5],
-        as: :radio_buttons,
-        item_wrapper_class: "score-radio radio-inline"
+      - if question.scored?
+        = f.input :score,
+          label: false,
+          collection: [1, 2, 3, 4, 5],
+          as: :radio_buttons,
+          item_wrapper_class: "score-input radio-inline"
+      - else
+        = f.input :score,
+          label: false,
+          as: :boolean,
+          checked_value: 5,
+          unchecked_value: 1,
+          input_html: { class: "score-input" }

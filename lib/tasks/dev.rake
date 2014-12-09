@@ -79,7 +79,7 @@ namespace :dev do
 
   def make_questions
     50.times do
-      q = Question.find_or_create_by! question: "Would you like a #{Faker::Hacker.noun}?"
+      q = Question.find_or_create_by! question: "Would you like a #{Faker::Hacker.noun}?", style: "scored"
       p "Created question: #{q.inspect}"
 
       (rand(2) + 1).times do
