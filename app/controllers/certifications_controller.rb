@@ -1,4 +1,5 @@
 class CertificationsController < InheritedResources::Base
+  load_and_authorize_resource
 
   private
 
