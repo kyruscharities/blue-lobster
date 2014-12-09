@@ -5,7 +5,9 @@
     = f.input :name
     = f.input :description
     = f.input :published
-    = f.input :job_types, collection: JobType.all.order(:name), as: :check_boxes
+
+    - types = resource.job_types + (JobType.all.order(:name).except {|j| resource.job_types.include? j}
+    = f.association :job_types, collection: types, as: :check_boxes
 
   .form-actions
     = f.button :submit
