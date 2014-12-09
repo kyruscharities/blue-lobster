@@ -27,6 +27,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'gravtastic'
 gem 'faker'
 gem 'pg'
+gem "rufus-scheduler"
 
 group :development do
   gem 'better_errors'

@@ -149,6 +149,8 @@ ActiveRecord::Schema.define(version: 20141209200237) do
     t.text     "support_goals_freeform"
     t.boolean  "profile_complete",       default: false
     t.string   "gender"
+    t.integer  "email_interval"
+    t.datetime "email_interval_last"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

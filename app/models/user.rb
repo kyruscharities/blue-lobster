@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   GENDERS = ['Male', 'Female']
   AGES = ['18-25', '26-35', '35-45', '46-55', '56-65', '66+']
+  EMAIL_INTERVALS = [0, 1, 7, 30]
   STATUSES = ['Active Duty', 'Reserves', 'Veteran', 'Family member']
   SERVICES = ['Army', 'Marines', 'Navy', 'Air Force', 'Coast Guard',
               'National Guard']
@@ -27,6 +28,8 @@ class User < ActiveRecord::Base
 
   validates_inclusion_of :age_range, in: AGES, allow_nil: true
 
+  validates_inclusion_of :email_interval, in: EMAIL_INTERVALS, allow_nil: true
+
   validates_inclusion_of :status, in: STATUSES, allow_nil: true
 
   #validates_inclusion_of :services, in: SERVICES, allow_nil: true
@@ -35,7 +38,10 @@ class User < ActiveRecord::Base
 
   after_create :default_role
 
+  before_validation :default_interval
+
   validates_presence_of :name
+  validates_presence_of :email_interval_last, allow_nil: true
 
   def veteran?
     roles.include? ['veteran']
@@ -101,6 +107,25 @@ class User < ActiveRecord::Base
 
   def answered_questions?
     answers.present?
+  end
+
+  def self.send_emails
+    User.find_each do |user|
+      if user.email_interval != 0
+        if user.email_interval_last = 0
+          user.email_interval_last = Time.now
+        end
+        if (user.email_interval_last + user.email_interval.days) < Time.now
+          # TODO uncomment me for message delivery
+          #ProgramMailer.program_mailer(user).deliver
+          user.email_interval_last = Time.now
+        end
+      end
+    end
+  end
+
+  def default_interval
+    self.email_interval ||= 30
   end
 
   private
