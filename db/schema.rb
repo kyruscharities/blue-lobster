@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(version: 20141209203313) do
     t.integer "user_id"
   end
 
+  create_table "job_programs_job_types", force: true do |t|
+    t.integer "job_program_id"
+    t.integer "job_type_id"
+  end
+
   create_table "job_types", force: true do |t|
     t.string   "description"
     t.string   "name"
