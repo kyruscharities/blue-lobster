@@ -11,7 +11,7 @@
     = f.input :gender, as: :radio_buttons, collection: User::GENDERS
     = f.input :status, as: :radio_buttons, collection: User::STATUSES
     = f.input :services, as: :check_boxes, collection: User::SERVICES
-    = f.input :support_goals, as: :check_boxes, collection: VeteranSupportGoal.all
+    = f.input :veteran_support_goals, as: :check_boxes, collection: VeteranSupportGoal.all
     = f.input :support_goals_freeform, label: nil
 
   .form-actions

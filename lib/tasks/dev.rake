@@ -8,7 +8,6 @@ namespace :dev do
       u.password = 'password'
       u.password_confirmation = 'password'
       u.zip = '12345'
-      u.age = User::AGES.sample
     end
 
     admin.update! confirmed_at: Time.now
@@ -18,6 +17,7 @@ namespace :dev do
     make_job_types
     make_questions
     make_programs
+    make_support_goals
 
     make_user 'brian@redcanary.co'
     make_user 'chris@redcanary.co'
@@ -28,12 +28,6 @@ namespace :dev do
     p "#{Answer.count} Answers"
     p "#{JobProgram.count} Programs"
     p "#{User.count} Users"
-
-    ['Education support', 'Transition support',
-     'Job search support', 'Housing support', 'Financial management support', 'Service disability support',
-     'Families of fallen soldier support'].each do |x|
-      VeteranSupportGoal.find_or_create_by! description: x
-    end
   end
 
   def make_user(email)
@@ -44,10 +38,10 @@ namespace :dev do
       u.zip = '12345'
       u.city = 'Omaha'
       u.state = 'NE'
-      u.age_range = '46-55'
-      u.status = 'Reserves'
-      u.services = ['Army', '']
-      u.support_goals = ['Service disability support', 'Families of fallen soldier support', '']
+      u.age_range = User::AGES.sample
+      u.status = User::STATUSES.sample
+      u.services = [User::SERVICES.sample]
+      VeteranSupportGoal.all.shuffle[0..rand(5)].each { |goal| u.veteran_support_goals << goal }
       u.support_goals_freeform = 'Learn how to do more things. Read more. Eat better.'
     end
     p "Created user #{user.inspect}"
@@ -57,6 +51,14 @@ namespace :dev do
 
     Question.all.shuffle[0..(Question.count - 10)].each do |question|
       question.answer_for! user, score: (1..5).to_a.sample
+    end
+  end
+
+  def make_support_goals
+    ['Education support', 'Transition support',
+     'Job search support', 'Housing support', 'Financial management support', 'Service disability support',
+     'Families of fallen soldier support'].each do |x|
+      VeteranSupportGoal.find_or_create_by! description: x
     end
   end
 

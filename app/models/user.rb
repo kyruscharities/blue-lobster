@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include UsersHelper
+
   GENDERS = ['Male', 'Female']
   AGES = ['18-25', '26-35', '35-45', '46-55', '56-65', '66+']
   STATUSES = ['Active Duty', 'Reserves', 'Veteran', 'Family member']
@@ -16,23 +18,27 @@ class User < ActiveRecord::Base
 
   has_many :answers
   has_and_belongs_to_many :certifications
+  has_and_belongs_to_many :veteran_support_goals
   serialize :services, Array
-  serialize :support_goals, Array
 
-  validates_presence_of :gender
-  validates_inclusion_of :gender, in: GENDERS
+  validates_presence_of :gender, if: :veteran?
+  validates_inclusion_of :gender, in: GENDERS, allow_nil: true
 
-  validates_inclusion_of :age_range, in: AGES
+  validates_inclusion_of :age_range, in: AGES, allow_nil: true
 
-  validates_inclusion_of :status, in: STATUSES
+  validates_inclusion_of :status, in: STATUSES, allow_nil: true
 
-  validates_inclusion_of :services, in: SERVICES
+  #validates_inclusion_of :services, in: SERVICES, allow_nil: true
 
   validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "should be in the form 12345 or 12345-1234", allow_nil: true
 
   after_create :default_role
 
   validates_presence_of :name
+
+  def veteran?
+    roles.include? ['veteran']
+  end
 
   def location
     ret = ''

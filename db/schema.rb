@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209161014) do
+ActiveRecord::Schema.define(version: 20141209170002) do
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -102,12 +102,12 @@ ActiveRecord::Schema.define(version: 20141209161014) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -125,11 +125,10 @@ ActiveRecord::Schema.define(version: 20141209161014) do
     t.string   "age_range"
     t.string   "status"
     t.text     "services"
-    t.text     "certifications"
     t.text     "job_codes"
-    t.text     "support_goals"
     t.text     "support_goals_freeform"
     t.boolean  "profile_complete",       default: false
+    t.string   "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -141,6 +140,11 @@ ActiveRecord::Schema.define(version: 20141209161014) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+
+  create_table "users_veteran_support_goals", force: true do |t|
+    t.integer "user_id"
+    t.integer "veteran_support_goal_id"
+  end
 
   create_table "veteran_support_goals", force: true do |t|
     t.text     "description"
