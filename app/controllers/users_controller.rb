@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :city, :state, :zip, :age_range, :status, :gender,
-                                 :support_goals_freeform, services: [], support_goals: [])
+                                 :support_goals_freeform, :certifications, services: [], support_goals: [])
   end
 
   def set_profile_complete

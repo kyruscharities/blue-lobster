@@ -5,4 +5,8 @@ class Certification < ActiveRecord::Base
 
   has_and_belongs_to_many :users
 
+  def friendly_name
+    "#{name} #{"(#{post_nominal})" if post_nominal?}"
+  end
+
 end

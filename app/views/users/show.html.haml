@@ -28,15 +28,20 @@
               Services:
               = resource.services.reject { |x| x.empty? }.join(', ')
 
-          - if resource.support_goals?
+          - if resource.veteran_support_goals.length != 0
             %p
               Support goals:
-              = resource.support_goals.reject { |x| x.empty? }.join(', ')
+              = resource.veteran_support_goals.collect(&:description).join(', ')
 
-          -if resource.support_goals_freeform?
+          - if resource.support_goals_freeform?
             %blockquote
               %p
                 = resource.support_goals_freeform
+
+          - if resource.certifications.length != 0
+            %p
+              Certifications:
+              = resource.certifications.collect(&:name).join(', ')
 
       %h4.page-header
         Top 10

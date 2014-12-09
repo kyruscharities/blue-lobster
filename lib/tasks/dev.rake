@@ -3,6 +3,8 @@ require 'faker'
 namespace :dev do
   desc 'Sets the app up for development'
   task :setup => :environment do
+    include UsersHelper
+
     admin = User.find_or_create_by! email: 'admin@foo.com' do |u|
       u.name ='administrator!!!'
       u.password = 'password'
@@ -38,11 +40,12 @@ namespace :dev do
       u.zip = '12345'
       u.gender = User::GENDERS.sample
       u.city = 'Omaha'
-      u.state = 'NE'
+      u.state = us_states.sample.last
       u.age_range = User::AGES.sample
       u.status = User::STATUSES.sample
       u.services = [User::SERVICES.sample]
       VeteranSupportGoal.all.shuffle[0..rand(5)].each { |goal| u.veteran_support_goals << goal }
+      Certification.all.shuffle[0..rand(5)].each { |cert| u.certifications << cert }
       u.support_goals_freeform = 'Learn how to do more things. Read more. Eat better.'
     end
     p "Created user #{user.inspect}"
