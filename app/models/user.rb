@@ -42,14 +42,14 @@ class User < ActiveRecord::Base
 
   def location
     ret = ''
-    ret += "#{city}," if city
-    ret += "#{state_from_code(state) }," if state
+    ret += "#{city}, " if city
+    ret += "#{state_from_code(state) }, " if state
     ret += "#{zip}" if zip
     ret
   end
 
   def bio_string
-    "#{age_range} year old #{gender.downcase} from #{location}"
+    "#{age_range} year old #{gender.try :downcase} from #{location}"
   end
 
   def get_skill_buckets

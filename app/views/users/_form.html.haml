@@ -7,7 +7,7 @@
     = f.input :state, collection: us_states
     = f.input :zip
 
-    = f.input :age_range, as: :radio_buttons, collection: AGES
+    = f.input :age_range, as: :radio_buttons, collection: User::AGES
     = f.input :gender, as: :radio_buttons, collection: User::GENDERS
     = f.input :status, as: :radio_buttons, collection: User::STATUSES
     = f.input :services, as: :check_boxes, collection: User::SERVICES

@@ -36,6 +36,7 @@ namespace :dev do
       u.password = 'password'
       u.password_confirmation = 'password'
       u.zip = '12345'
+      u.gender = User::GENDERS.sample
       u.city = 'Omaha'
       u.state = 'NE'
       u.age_range = User::AGES.sample

@@ -18,14 +18,10 @@
             .col-xs-12.col-sm-4
               %h4 Bio
               %p
-                %strong Age:
-                = resource.age_range
+                %em= resource.bio_string
               %p
                 #{resource.status} | #{resource.services.join(', ')}
               %p= resource.email
-              %p
-                %strong Location:
-                = resource.location
               %p
                 %strong #{resource.certifications.count} Certifications
               %p
