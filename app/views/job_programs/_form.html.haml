@@ -1,0 +1,11 @@
+= simple_form_for(resource) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.input :published
+    = f.input :job_types, collection: JobType.all.order(:name), as: :check_boxes
+
+  .form-actions
+    = f.button :submit

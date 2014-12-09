@@ -174,4 +174,10 @@ ActiveRecord::Schema.define(version: 20141209200237) do
     t.datetime "updated_at"
   end
 
+  create_table "veteran_support_goals", force: true do |t|
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end

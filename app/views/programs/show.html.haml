@@ -2,14 +2,22 @@
   .col-xs-12
     %h3.page-header
       #{resource.name}
-    
+
+      %span.pull-right
+        = render "actions"
+    %p
+      - if resource.published?
+        %b Published
+      - else
+        %b Unpublished
+
     %p #{resource.resource_type}
     %p #{resource.description}
 
   .col-xs-12
     %h4.page-header
-      Job Types Associated with this Program
-    
+      Job Skills Supported by this Program
+
     %table.table.table-bordered.table-striped
       %thead
         %tr

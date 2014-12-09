@@ -30,7 +30,12 @@ Rails.application.routes.draw do
 
   resources :job_types
 
-  resources :programs
+  resources :programs do
+    member do
+      put :publish
+      put :unpublish
+    end
+  end
 
   namespace :admin do
     get :update_styles
