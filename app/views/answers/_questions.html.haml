@@ -1,7 +1,17 @@
 :javascript
+  function updateSkillsAndJobTypes() {
+    $.get('/profile_card', function(html){
+      var tempScrollTop = $(window).scrollTop();
+      $(".profile-card").html(html);
+      $(window).scrollTop(tempScrollTop);
+    });
+  }
   $(document).ready(function() {
+    var options = {
+            success:       updateSkillsAndJobTypes  // post-submit callback
+        };
     $("form.edit_answer, form.new_answer").submit(function() {
-      $(this).ajaxSubmit();
+      $(this).ajaxSubmit(options);
       return false;
     });
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209194910) do
+ActiveRecord::Schema.define(version: 20141209200237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,11 @@ ActiveRecord::Schema.define(version: 20141209194910) do
   create_table "certifications_users", force: true do |t|
     t.integer "certification_id"
     t.integer "user_id"
+  end
+
+  create_table "job_programs_job_types", force: true do |t|
+    t.integer "job_program_id"
+    t.integer "job_type_id"
   end
 
   create_table "job_types", force: true do |t|
@@ -61,6 +66,11 @@ ActiveRecord::Schema.define(version: 20141209194910) do
     t.datetime "updated_at"
   end
 
+  create_table "military_job_codes_users", force: true do |t|
+    t.integer "military_job_code_id"
+    t.integer "user_id"
+  end
+
   create_table "programs", force: true do |t|
     t.string   "description"
     t.string   "name"
@@ -74,9 +84,9 @@ ActiveRecord::Schema.define(version: 20141209194910) do
     t.integer "job_type_id"
   end
 
-  create_table "military_job_codes_users", force: true do |t|
-    t.integer "military_job_code_id"
-    t.integer "user_id"
+  create_table "programs_veteran_support_goals", force: true do |t|
+    t.integer "program_id"
+    t.integer "veteran_support_goal_id"
   end
 
   create_table "questions", force: true do |t|
@@ -97,11 +107,13 @@ ActiveRecord::Schema.define(version: 20141209194910) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "skill_values", force: true do |t|
-    t.integer  "weight",      null: false
+    t.integer  "weight",               null: false
     t.integer  "question_id"
     t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "certification_id"
+    t.integer  "military_job_code_id"
   end
 
   create_table "skills", force: true do |t|

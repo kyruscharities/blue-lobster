@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   get '/profile' => 'users#profile'
+  get '/profile_card' => 'users#profile_card'
 
   resources :users do
     member do

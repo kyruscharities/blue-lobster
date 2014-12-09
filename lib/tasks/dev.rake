@@ -18,8 +18,8 @@ namespace :dev do
     make_skills
     make_job_types
     make_questions
-    make_programs
     make_support_goals
+    make_programs
 
     make_user 'brian@redcanary.co'
     make_user 'chris@redcanary.co'
@@ -103,6 +103,10 @@ namespace :dev do
           p.resource_type = 'Job'
           p.job_types << JobType.all.sample
         end
+        
+        5.times do
+          p.veteran_support_goals << VeteranSupportGoal.all.sample
+        end 
       end
     end
   end

@@ -31,9 +31,9 @@
 
             .col-xs-12.col-sm-4
               %strong Needs Supported by this Program
-              -#%ul
-                - resource.support_needs.each do |need|
-                  %li= link_to need.name, need
+              %ul
+                - resource.veteran_support_goals.each do |need|
+                  %li #{need.description}
           %hr
   -#
   -#  .row

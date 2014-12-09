@@ -1,6 +1,7 @@
 class SkillValue < ActiveRecord::Base
   belongs_to :question
-  validates_presence_of :question
+  belongs_to :certification
+  belongs_to :military_job_code
 
   belongs_to :skill
   validates_presence_of :skill
