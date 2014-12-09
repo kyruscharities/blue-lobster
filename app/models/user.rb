@@ -71,6 +71,18 @@ class User < ActiveRecord::Base
       end
     end
 
+    for cert in self.certifications
+      for val in cert.skill_values
+        skill_buckets[val.skill] += val.weight
+      end
+    end
+
+    for moc in self.military_job_codes
+      for val in moc.skill_values
+        skill_buckets[val.skill] += val.weight
+      end
+    end
+
     return skill_buckets
   end
 
