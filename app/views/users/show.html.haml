@@ -56,11 +56,4 @@
       %h4.page-header Matching Programs
       .alert.alert-error TBD
 
-      %h4.page-header Questions You've Answered
-      - @user.answers.joins(:question).each do |answer|
-        .question
-          %blockquote
-            %p
-              #{answer.question.question}
-              %strong : #{answer.score}
-        -#%hr
+      = render partial: "answers/questions", locals: { answered_questions: @answered_questions, unanswered_questions: @unanswered_questions }

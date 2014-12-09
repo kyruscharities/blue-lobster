@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
+    @unanswered_questions = Question.unanswered_by(current_user)
+    @answered_questions = Question.answered_by(current_user)
     render 'show'
   end
 

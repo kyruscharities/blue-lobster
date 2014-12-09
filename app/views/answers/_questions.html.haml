@@ -1,0 +1,22 @@
+:javascript
+  $(document).ready(function() {
+    $("form.edit_answer, form.new_answer").submit(function() {
+      $(this).ajaxSubmit();
+      return false;
+    });
+
+    $(".score-radio").change(function() {
+      var form = $(this).closest("form");
+      form.submit();
+    })
+  })
+
+- if unanswered_questions.present?
+  %h4.page-header Unanswered Questions
+  - unanswered_questions.each do |question|
+    = render partial: "answers/question", locals: { question: question }
+
+- if answered_questions.present?
+  %h4.page-header Answered Questions
+  - answered_questions.each do |question|
+    = render partial: "answers/question", locals: { question: question }

@@ -1,0 +1,12 @@
+.row
+  .question.col-xs-4
+    %p
+      = question.question
+  .answer.col-xs-6.pull-right
+    - answer = question.answer_for(current_user) || Answer.new
+    = simple_form_for [question, answer] do |f|
+      = f.input :score,
+        label: false,
+        collection: [1, 2, 3, 4, 5],
+        as: :radio_buttons,
+        item_wrapper_class: "score-radio radio-inline"
