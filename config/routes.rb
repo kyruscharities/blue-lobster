@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :certifications
   resources :veteran_support_goals
-
+  resources :skills
   resources :military_job_codes
 
   get 'admin/update_styles'
