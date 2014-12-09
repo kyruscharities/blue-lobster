@@ -1,6 +1,6 @@
 - if resource.published?
-  = link_to 'Unpublish', unpublish_job_program_path(resource), method: :put, class: 'btn btn-info btn-xs'
+  = link_to 'Unpublish', unpublish_program_path(resource), method: :put, class: 'btn btn-info btn-xs'
 - else
-  = link_to 'Publish', publish_job_program_path(resource), method: :put, class: 'btn btn-info btn-xs'
+  = link_to 'Publish', publish_program_path(resource), method: :put, class: 'btn btn-info btn-xs'
 = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-info btn-xs'
 = link_to 'Delete', resource, method: :delete, class: 'btn btn-danger btn-xs'

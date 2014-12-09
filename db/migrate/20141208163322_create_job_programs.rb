@@ -1,6 +1,6 @@
 class CreateJobPrograms < ActiveRecord::Migration
   def change
-    create_table :job_programs do |t|
+    create_table :programs do |t|
       t.string :description
       t.string :name
 

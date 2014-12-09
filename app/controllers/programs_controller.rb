@@ -10,25 +10,25 @@ class ProgramsController < ApplicationController
     end
 
     def publish
-        if @job_program.publish!
-            redirect_to :back, notice: "Published #{@job_program.name}"
+        if @program.publish!
+            redirect_to :back, notice: "Published #{@program.name}"
         else
-            redirect_to :back, alert: "Failed to publish #{@job_program.name}. Please call Brian."
+            redirect_to :back, alert: "Failed to publish #{@program.name}. Please call Brian."
         end
     end
 
     def unpublish
-        if @job_program.unpublish!
-            redirect_to :back, notice: "Unpublished #{@job_program.name}"
+        if @program.unpublish!
+            redirect_to :back, notice: "Unpublished #{@program.name}"
         else
-            redirect_to :back, alert: "Failed to unpublish #{@job_program.name}. Please call Brian."
+            redirect_to :back, alert: "Failed to unpublish #{@program.name}. Please call Brian."
         end
     end
 
     private
 
-    def job_program_params
-        params.require(:job_program).permit(:name, :description, :published, job_type_ids: [])
+    def program_params
+        params.require(:program).permit(:name, :description, :published, job_type_ids: [])
     end
 
 end
