@@ -21,3 +21,9 @@
             %td 
               = link_to "#{jt.name}", jt
             %td #{jt.description}
+  .col-xs-12
+    %h4.page-header
+      Goals this Program Supports
+    %ul
+      - resource.veteran_support_goals.each do |goal|
+        %li #{goal.description}  
