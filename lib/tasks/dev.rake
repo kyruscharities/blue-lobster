@@ -99,6 +99,7 @@ namespace :dev do
       Program.find_or_create_by! name: Faker::Company.name do |p|
         p.description = Faker::Company.bs
         5.times do
+          p.resource_type = 'Job'
           p.job_types << JobType.all.sample
         end
       end
