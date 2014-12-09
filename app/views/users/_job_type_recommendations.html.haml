@@ -1,12 +1,6 @@
-.row
-  .col-xs-6.col-xs-offset-1
-    Job Type
-  .col-xs-2
-    Skill value
-
 - job_types.each do |job_type, value|
   .row
-    .col-xs-6.col-xs-offset-1
+    .col-xs-6
       = link_to job_type.name, job_type
     .col-xs-2
       = value
