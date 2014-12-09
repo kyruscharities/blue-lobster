@@ -1,0 +1,12 @@
+= simple_form_for(@program) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name, autofocus: true
+    = f.input :description, as: :text, input_html: {rows: 4}
+    
+    = f.association :veteran_support_goals, multiple: true
+    = f.association :job_types, multiple: true
+
+  .form-actions
+    = f.button :submit
