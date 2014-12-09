@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   has_many :skills, -> { uniq }, through: :skill_values
 
   validates :question, presence: true
+  validates :style, inclusion: { in: ["scored", "yes_no"] }
   #validates :skills, length: { minimum: 1 }
 
   has_many :answers
@@ -13,6 +14,10 @@ class Question < ActiveRecord::Base
 
   def answer_for(user)
     answers.find_by_user_id(user.id)
+  end
+
+  def scored?
+    style == "scored"
   end
 
   def self.answered_by(user)
