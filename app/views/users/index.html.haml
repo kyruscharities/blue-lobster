@@ -1,0 +1,59 @@
+.row
+  .col-xs-12
+    %h2.page-header
+      #{resource_class.name.underscore.humanize.titleize.pluralize}
+      %span.pull-right
+        = link_to 'New', new_resource_path, class: 'btn btn-primary'
+
+    - collection.order(:email).each do |resource|
+      .row
+        .col-xs-12
+          %h4.page-header
+            = link_to resource.name, resource
+            %span.pull-right
+              = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-xs btn-info'
+              = link_to 'Delete', resource, method: 'delete', class: 'btn btn-xs btn-danger'
+
+          .row
+            .col-xs-12.col-sm-4
+              %h4 Bio
+              %p
+                %strong Age:
+                = resource.age_range
+              %p
+                #{resource.status} | #{resource.services.join(', ')}
+              %p= resource.email
+              %p
+                %strong Location:
+                = resource.location
+              %p
+                %strong #{resource.certifications.count} Certifications
+              %p
+                %strong TBD
+                -#%strong #{resource.job_codes.count} Military Job Codes
+
+            .col-xs-12.col-sm-4
+              %h4 Needs
+              %p
+                %strong #{resource.support_goals.count} Support Goals
+
+            .col-xs-12.col-sm-4
+              %h4 Admin
+              %p
+                %strong Roles:
+                = resource.roles.collect(&:name).join(', ')
+              %p
+                %strong Created:
+                = resource.created_at
+              %p
+                %strong Updated:
+                = resource.updated_at
+              %p
+                %strong Last signed in
+                = resource.last_sign_in_at
+                from
+                = resource.last_sign_in_ip
+
+          %p
+            %strong Answered #{resource.answers.count} Questions
+          %hr

@@ -16,19 +16,7 @@
                 %i.fa.fa-gear
 
           %p
-            %em
-              Located at
-              - if resource.city
-                #{resource.city},
-              - if resource.state
-                #{state_from_code(resource.state) },
-              - if resource.zip
-                #{resource.zip}
-
-          - if resource.age_range?
-            %p
-              Age:
-              = resource.age_range
+            %em= resource.bio_string
 
           - if resource.status?
             %p

@@ -8,6 +8,7 @@ namespace :dev do
       u.password = 'password'
       u.password_confirmation = 'password'
       u.zip = '12345'
+      u.age = User::AGES.sample
     end
 
     admin.update! confirmed_at: Time.now

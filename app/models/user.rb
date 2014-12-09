@@ -1,4 +1,10 @@
 class User < ActiveRecord::Base
+  GENDERS = ['Male', 'Female']
+  AGES = ['18-25', '26-35', '35-45', '46-55', '56-65', '66+']
+  STATUSES = ['Active Duty', 'Reserves', 'Veteran', 'Family member']
+  SERVICES = ['Army', 'Marines', 'Navy', 'Air Force', 'Coast Guard',
+              'National Guard']
+
   rolify
   include Gravtastic
   gravtastic size: 300
@@ -13,15 +19,36 @@ class User < ActiveRecord::Base
   serialize :services, Array
   serialize :support_goals, Array
 
+  validates_presence_of :gender
+  validates_inclusion_of :gender, in: GENDERS
+
+  validates_inclusion_of :age_range, in: AGES
+
+  validates_inclusion_of :status, in: STATUSES
+
+  validates_inclusion_of :services, in: SERVICES
+
   validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "should be in the form 12345 or 12345-1234", allow_nil: true
 
   after_create :default_role
 
   validates_presence_of :name
-  
+
+  def location
+    ret = ''
+    ret += "#{city}," if city
+    ret += "#{state_from_code(state) }," if state
+    ret += "#{zip}" if zip
+    ret
+  end
+
+  def bio_string
+    "#{age_range} year old #{gender.downcase} from #{location}"
+  end
+
   def get_skill_buckets
     skill_buckets = Hash.new 0
-    
+
     for ans in self.answers
       p ans
 
@@ -46,19 +73,19 @@ class User < ActiveRecord::Base
 
   def get_job_types
     job_buckets = Hash.new 0
-    skill_buckets = self.get_skill_buckets 
+    skill_buckets = self.get_skill_buckets
 
     for jt in JobType.all
       p jt
       p jt.skills
-      
+
       for skill in jt.skills
         p skill
         job_buckets[jt] += skill_buckets[skill]
       end
     end
 
-    return job_buckets 
+    return job_buckets
   end
 
   def matching_job_types_by_skill_level
