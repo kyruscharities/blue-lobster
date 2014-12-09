@@ -1,0 +1,57 @@
+.row
+  .col-xs-12.col-sm-4
+    .pic= image_tag @user.gravatar_url
+
+  .col-xs-12.col-sm-8
+    %h2.name
+      = @user.name
+      %span.pull-right
+        = link_to edit_user_path(@user), class: 'btn btn-sm btn-info' do
+          %i.fa.fa-pencil
+        = link_to edit_user_registration_path, class: 'btn btn-sm btn-default' do
+          %i.fa.fa-gear
+
+    %p
+      %em= resource.bio_string
+
+    - if resource.status?
+      %p
+        Status:
+        = resource.status
+
+    - if resource.services?
+      %p
+        Services:
+        = resource.services.reject { |x| x.empty? }.join(', ')
+
+    - if resource.veteran_support_goals.length != 0
+      %p
+        Support goals:
+        = resource.veteran_support_goals.collect(&:description).join(', ')
+
+    - if resource.support_goals_freeform?
+      %blockquote
+        %p
+          = resource.support_goals_freeform
+
+    - if resource.certifications.length != 0
+      %p
+        Certifications:
+        = resource.certifications.collect(&:friendly_name).join(', ')
+
+    - if resource.military_job_codes.length != 0
+      %p
+        Military jobs:
+        = resource.military_job_codes.collect(&:friendly_name).join(', ')
+
+%h4.page-header
+  Top 10
+  = link_to 'Skills', skills_user_path(@user)
+= render 'skills_list', skills: @user.normalized_skills[0..10]
+
+%h4.page-header
+  Top 10
+  = link_to 'Matching Job Types', recommendations_user_path(@user)
+= render 'job_type_recommendations', job_types: @user.matching_job_types_by_skill_level[0..9]
+
+= render partial: "answers/questions", locals: { answered_questions: @answered_questions, unanswered_questions: @unanswered_questions }

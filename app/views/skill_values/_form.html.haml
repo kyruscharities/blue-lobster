@@ -3,7 +3,13 @@
 
   .form-inputs
     = f.input :weight
-    = f.association :question, label_method: :question
+    - if @skill_value.question.present?
+      = f.association :question, label_method: :question
+    - if @skill_value.certification.present?
+      = f.association :certification, label_method: :friendly_name
+    - if @skill_value.military_job_code.present?
+      = f.association :military_job_code, label_method: :friendly_name
+
     = f.association :skill
 
   .form-actions

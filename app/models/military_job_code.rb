@@ -1,4 +1,6 @@
 class MilitaryJobCode < ActiveRecord::Base
+  has_many :skill_values
+  has_many :skills, -> { uniq }, through: :skill_values
 
   validates_presence_of :service
   validates_presence_of :mpc
