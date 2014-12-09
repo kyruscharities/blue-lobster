@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :answers
+  has_and_belongs_to_many :certifications
   serialize :services, Array
   serialize :support_goals, Array
 
