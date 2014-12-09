@@ -12,11 +12,11 @@ Rails.application.routes.draw do
 
   get '/profile' => 'users#profile'
 
-
   resources :users do
     member do
       get :recommendations
       get :skills
+      get :profile
     end
   end
 

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :answers
   serialize :services, Array
+  serialize :support_goals, Array
 
   validates_format_of :zip, with: /\A\d{5}(-\d{4})?\z/, message: "should be in the form 12345 or 12345-1234", allow_nil: true
 
