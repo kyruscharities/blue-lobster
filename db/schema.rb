@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141209200237) do
+=======
+ActiveRecord::Schema.define(version: 20141209203313) do
+>>>>>>> Programs problem fixes
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +41,14 @@ ActiveRecord::Schema.define(version: 20141209200237) do
     t.integer "user_id"
   end
 
+<<<<<<< HEAD
   create_table "job_programs_job_types", force: true do |t|
     t.integer "job_program_id"
     t.integer "job_type_id"
   end
 
+=======
+>>>>>>> Programs problem fixes
   create_table "job_types", force: true do |t|
     t.string   "description"
     t.string   "name"
@@ -77,6 +84,10 @@ ActiveRecord::Schema.define(version: 20141209200237) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resource_type"
+<<<<<<< HEAD
+=======
+    t.boolean  "published",     default: true
+>>>>>>> Programs problem fixes
   end
 
   create_table "programs_job_types", force: true do |t|
@@ -149,8 +160,11 @@ ActiveRecord::Schema.define(version: 20141209200237) do
     t.text     "support_goals_freeform"
     t.boolean  "profile_complete",       default: false
     t.string   "gender"
+<<<<<<< HEAD
     t.integer  "email_interval"
     t.datetime "email_interval_last"
+=======
+>>>>>>> Programs problem fixes
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -174,4 +188,13 @@ ActiveRecord::Schema.define(version: 20141209200237) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+  create_table "veteran_support_goals", force: true do |t|
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+=======
+>>>>>>> Programs problem fixes
 end

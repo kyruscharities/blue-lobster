@@ -1,12 +1,12 @@
-= simple_form_for(@program) do |f|
+= simple_form_for(resource) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :name, autofocus: true
-    = f.input :description, as: :text, input_html: {rows: 4}
-    
-    = f.association :veteran_support_goals, multiple: true
-    = f.association :job_types, multiple: true
+    = f.input :name
+    = f.input :description
+    = f.input :published
+    - types = resource.job_types.order(:name) + (JobType.all.order(:name) - resource.job_types)
+    = f.association :job_types, collection: types, as: :check_boxes
 
   .form-actions
     = f.button :submit

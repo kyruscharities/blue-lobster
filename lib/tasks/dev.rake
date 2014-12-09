@@ -99,6 +99,7 @@ namespace :dev do
     50.times do
       Program.find_or_create_by! name: Faker::Company.name do |p|
         p.description = Faker::Company.bs
+        p.published = (rand(3) > 0)  # FIXME: I'm not sure that this works.
         5.times do
           p.resource_type = 'Job'
           p.job_types << JobType.all.sample
