@@ -1,0 +1,40 @@
+.row
+  .col-xs-12
+    %h2.page-header
+      MOS Codes
+      %span.pull-right
+        = link_to 'New', new_resource_path, class: 'btn btn-primary'
+
+    - collection.order(:title).each do |resource|
+      .row
+        .col-xs-12
+          %h3.page-header
+            = link_to resource.title, resource
+            %span.pull-right
+              = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-info btn-xs'
+              = link_to 'Delete', resource, method: :delete, class: 'btn btn-danger btn-xs'
+
+        .col-xs-12.col-sm-6
+          %p
+            Service:
+            = resource.service
+          %p
+            MPC:
+            = resource.mpc
+          %p
+            Status:
+            = resource.status
+          %p
+            Code:
+            = resource.code
+          %p
+            onetcode:
+            = resource.onetcode
+          %p
+            onettitle:
+            = resource.onettitle
+          %p Skill Values
+          - resource.skill_values.each do |skill_value|
+            %p
+              %em= "#{skill_value.skill.name}: #{skill_value.weight}"
+          %hr
