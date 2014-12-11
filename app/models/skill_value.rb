@@ -9,7 +9,7 @@ class SkillValue < ActiveRecord::Base
   validates_presence_of :weight
   validates_numericality_of :weight, greater_than: 0
 
-  validates_uniqueness_of :question_id, :scope => :skill_id
+  #validates_uniqueness_of :question_id, :scope => :skill_id
 
   after_initialize :init
 

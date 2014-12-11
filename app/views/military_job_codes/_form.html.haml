@@ -6,10 +6,10 @@
     = f.input :mpc
     = f.input :status
     = f.input :code
-    = f.input :title
+    = f.input :title, as: :string
     = f.input :onetcode
-    = f.input :onettitle
-    = f.association :skills, collection: Skill.all, multiple: true
+    = f.input :onettitle, as: :string
+    = f.association :skills, collection: Skill.all.order(:name), as: :check_boxes
 
     - resource.skill_values.each do |skill_value|
       %p= link_to "#{skill_value.skill.name}: #{skill_value.weight}", edit_skill_value_path(skill_value)

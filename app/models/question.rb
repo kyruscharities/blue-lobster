@@ -1,12 +1,14 @@
 class Question < ActiveRecord::Base
-  has_many :skill_values
+  STYLES = ["scored", "yes_no"]
+
+  has_many :skill_values, dependent: :destroy
   has_many :skills, -> { uniq }, through: :skill_values
 
   validates :question, presence: true
-  validates :style, inclusion: { in: ["scored", "yes_no"] }
+  validates :style, inclusion: { in: STYLES }
   #validates :skills, length: { minimum: 1 }
 
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   def answer_for!(user, options={})
     answers.create! options.merge({user: user})

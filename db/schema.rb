@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(version: 20141209204144) do
     t.datetime "updated_at"
   end
 
+  create_table "job_types_programs", force: true do |t|
+    t.integer "program_id"
+    t.integer "job_type_id"
+  end
+
   create_table "job_types_skills", force: true do |t|
     t.integer "job_type_id"
     t.integer "skill_id"
@@ -73,11 +78,6 @@ ActiveRecord::Schema.define(version: 20141209204144) do
     t.datetime "updated_at"
     t.string   "resource_type"
     t.boolean  "published",     default: false
-  end
-
-  create_table "programs_job_types", force: true do |t|
-    t.integer "program_id"
-    t.integer "job_type_id"
   end
 
   create_table "programs_veteran_support_goals", force: true do |t|

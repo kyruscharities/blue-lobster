@@ -1,5 +1,5 @@
 class MilitaryJobCode < ActiveRecord::Base
-  has_many :skill_values
+  has_many :skill_values, dependent: :destroy
   has_many :skills, -> { uniq }, through: :skill_values
 
   validates_presence_of :service

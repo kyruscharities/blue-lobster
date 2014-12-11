@@ -1,0 +1,39 @@
+.row
+  .col-xs-12
+    %h2.page-header
+      #{resource_class.name.underscore.humanize.titleize.pluralize}
+      %span.pull-right
+        = link_to 'New', new_resource_path, class: 'btn btn-primary'
+
+    = will_paginate collection
+
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Service
+          %th MPC
+          %th Status
+          %th Codes &amp; Titles
+          %th Resulting Skills
+          %th
+      %tbody
+        - collection.order(:title).each do |resource|
+          %tr
+            %td= resource.service
+            %td= resource.mpc
+            %td= resource.status
+            %td
+              %p
+                MOS: #{resource.code} -
+                %strong= resource.title
+              %p
+                ONET: #{resource.onetcode} - #{resource.onettitle}
+            %td
+              %ul.list-unstyled
+                - resource.skills.each do |skill|
+                  %li= link_to skill.name, skill
+            %td
+              = link_to 'Edit', send("edit_#{resource.class.name.underscore}_path", resource), class: 'btn btn-info btn-xs'
+              = link_to 'Delete', resource, method: 'delete', class: 'btn btn-danger btn-xs'
+
+    = will_paginate collection

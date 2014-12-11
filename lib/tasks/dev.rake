@@ -20,6 +20,7 @@ namespace :dev do
     make_questions
     make_support_goals
     make_programs
+    link_skills_to_mos_codes
 
     make_user 'brian@redcanary.co'
     make_user 'chris@redcanary.co'
@@ -119,6 +120,12 @@ namespace :dev do
           p.veteran_support_goals << VeteranSupportGoal.all.sample
         end 
       end
+    end
+  end
+
+  def link_skills_to_mos_codes
+    MilitaryJobCode.all.each do |m|
+      Skill.all.shuffle[0..rand(10)].each { |skill| m.skills << skill }
     end
   end
 end

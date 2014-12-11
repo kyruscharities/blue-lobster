@@ -38,6 +38,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     builder (3.2.2)
     cancan (1.6.10)
     capybara (2.4.4)
@@ -264,6 +266,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bootstrap-will_paginate
   cancan
   capybara
   coffee-rails (~> 4.0.0)
