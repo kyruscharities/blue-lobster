@@ -2,20 +2,40 @@
   = f.error_notification
 
   .form-inputs
+    %h4.page-header About You
     = f.input :name
-    = f.input :city
-    = f.input :state, collection: us_states
-    = f.input :zip
+    .row
+      .col-xs-4
+        = f.input :city
+      .col-xs-4
+        = f.input :state, collection: us_states
+      .col-xs-4
+        = f.input :zip
 
-    = f.input :age_range, as: :radio_buttons, collection: User::AGES
-    = f.input :gender, as: :radio_buttons, collection: User::GENDERS
-    = f.input :status, as: :radio_buttons, collection: User::STATUSES
-    = f.input :services, as: :check_boxes, collection: User::SERVICES
-    = f.input :email_interval, as: :check_boxes, collection: User::EMAIL_INTERVALS
-    = f.association :veteran_support_goals, as: :check_boxes, collection: VeteranSupportGoal.all.order(:description), label_method: :description
-    = f.input :support_goals_freeform, label: nil
-    = f.association :certifications, as: :check_boxes, collection: Certification.all.order(:name), label_method: :friendly_name
-    = f.association :military_job_codes, as: :check_boxes, collection: MilitaryJobCode.all.order(:title), label_method: :friendly_name
+    .row
+      .col-xs-6
+        = f.input :age_range, as: :select, collection: User::AGES
+      .col-xs-6
+        = f.input :gender, as: :radio_buttons, collection: User::GENDERS
+
+    %h4.page-header Your Goals
+    .row
+      .col-xs-6
+        = f.association :veteran_support_goals, as: :check_boxes, collection: VeteranSupportGoal.all.order(:description), label_method: :description, label: false
+      .col-xs-6
+        = f.input :support_goals_freeform, label: 'Additional goals', input_html: {rows: 8}
+
+    %h4.page-header Your Service
+    .row
+      .col-xs-6
+        = f.input :status, as: :check_boxes, collection: User::STATUSES
+      .col-xs-6
+        = f.input :services, as: :check_boxes, collection: User::SERVICES
+    -#= f.input :email_interval, as: :check_boxes, collection: User::EMAIL_INTERVALS
+
+    = f.association :certifications, as: :select, collection: Certification.all.order(:name), label_method: :friendly_name, multiple: true, input_html: {size: 8}
+
+    = f.association :military_job_codes, as: :select, collection: MilitaryJobCode.all.order(:title), label_method: :friendly_name, multiple: true, input_html: {size: 8}
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Save', class: 'btn-primary btn-block btn-lg'
