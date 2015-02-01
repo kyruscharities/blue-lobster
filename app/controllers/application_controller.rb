@@ -11,9 +11,15 @@ class ApplicationController < ActionController::Base
 
     # render access denied
     @message = exception.message
-    respond_to do |format|
-      format.html { render 'shared/access_denied' }
-      format.json { render :json => {:error => @message} }
+
+    if signed_in?
+      respond_to do |format|
+        format.html { render 'shared/access_denied' }
+        format.json { render :json => {:error => @message} }
+      end
+    else
+      flash.alert = 'You need to sign in before continuing.'
+      redirect_to new_user_session_path
     end
   end
 
