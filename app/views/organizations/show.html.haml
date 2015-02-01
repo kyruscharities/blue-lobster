@@ -1,0 +1,10 @@
+.row
+  .col-xs-12
+    %h1.page-header
+      #{resource.respond_to?(:name) ? resource.name : "Viewing #{resource.class.name.underscore.humanize.titleize}"}
+
+      %span.pull-right
+        - if can? :edit, resource
+          = link_to 'Edit', edit_resource_path
+
+    = render 'organization_description'

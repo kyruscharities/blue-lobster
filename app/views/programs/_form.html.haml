@@ -2,13 +2,16 @@
   = f.error_notification
 
   .form-inputs
+    = f.association :organization, collection: Organization.order(:name)
+
     = f.input :name
     = f.input :description
-    = f.input :published
-    - types = resource.job_types.order(:name) + (JobType.all.order(:name) - resource.job_types)
-    = f.association :job_types, collection: types, as: :check_boxes
+
     - goals = resource.veteran_support_goals.order(:description) + (VeteranSupportGoal.all.order(:description) - resource.veteran_support_goals)
-    = f.association :veteran_support_goals, collection: goals, as: :check_boxes, label_method: :description
+    = f.association :veteran_support_goals, collection: goals, as: :check_boxes, label_method: :description, label: 'Supports veteran goals:'
+
+    - types = resource.job_types.order(:name) + (JobType.all.order(:name) - resource.job_types)
+    = f.association :job_types, collection: types, as: :check_boxes, label: 'Supports job types:'
 
   .form-actions
     = f.button :submit

@@ -5,7 +5,7 @@
     = f.input :name, autofocus: true
     = f.input :description, as: :text, input_html: {rows: 4}
 
-    = f.association :skills, multiple: true
+    = f.association :skills, multiple: true, as: :check_boxes, label: 'Required skills:', collection: Skill.order(:name)
 
   .form-actions
     = f.button :submit

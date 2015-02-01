@@ -1,0 +1,17 @@
+.row
+  .col-xs-12
+    %h2.page-header
+      #{resource_class.name.underscore.humanize.titleize.pluralize}
+      %span.pull-right
+        = link_to 'New', new_resource_path, class: 'btn btn-primary' if can? :create, resource_class
+
+    - collection.order(:name).each do |resource|
+      .row{style: 'margin-bottom: 50px'}
+        .col-xs-12
+          %h3.page-header
+            = resource.name
+            %span.pull-right
+              = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-info btn-xs'
+              = link_to 'Delete', resource, method: :delete, class: 'btn btn-danger btn-xs'
+
+          = render 'organization_description'

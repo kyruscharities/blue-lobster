@@ -1,50 +1,6 @@
 Blue Lobster
 ================
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+CSV.parse(File.read('/Users/bb/Downloads/CheckpointMarshall Input - Organizations.csv'))[1..-1].each {|line| Organization.find_or_create_by!(name: line[0]) {|o| o.description = line[1];o.phone=line[2];o.address=line[3];o.url=line[4]}}
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
-
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
-
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
-Ruby on Rails
--------------
-
-This application requires:
-
-- Ruby 2.1.1
-- Rails 4.1.0
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Getting Started
----------------
-
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+CSV.parse(File.open('/Users/bb/Downloads/CheckpointMarshall Input - Primary Data.csv', "r:ISO-8859-1").read)[1..-1].each {|line| Program.find_or_create_by!(organization: Organization.find_by(name: line[0]),name: line[1], description: line[2], url: line[8])}

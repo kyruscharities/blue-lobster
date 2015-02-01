@@ -3,25 +3,26 @@
     %h2.page-header
       #{resource_class.name.underscore.humanize.titleize.pluralize}
       %span.pull-right
-        = link_to 'New', new_resource_path, class: 'btn btn-primary'
+        - if can? :create, resource_class
+          = link_to 'New', new_resource_path, class: 'btn btn-primary'
 
     - collection.order(:name).each do |resource|
-      .row
+      .row{style: 'margin-bottom: 50px'}
         .col-xs-12
           %h3.page-header
+            = link_to resource.organization.name, resource.organization
+            >
             = link_to resource.name, resource
             %span.pull-right
               = render "actions", resource: resource
           .row
             .col-xs-12.col-sm-4
               %p
-                - if resource.published?
-                  %b Published
-                - else
-                  %b Unpublished
-              %p
                 %em= resource.description
-            
+              %p
+                %strong Edit URL:
+                %code= edit_resource_url(resource, token: resource.access_code)
+
             .col-xs-12.col-sm-4
               %strong Type of Program
               %em= resource.resource_type
@@ -37,7 +38,6 @@
               %ul
                 - resource.veteran_support_goals.each do |need|
                   %li #{need.description}
-          %hr
   -#
   -#  .row
   -#    .col-xs-1

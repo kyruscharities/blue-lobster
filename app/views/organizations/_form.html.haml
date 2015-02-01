@@ -1,0 +1,12 @@
+= simple_form_for(resource) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.input :url, input_html: {type: :url}
+    = f.input :phone, input_html: {type: :phone}
+    = f.input :address
+
+  .form-actions
+    = f.button :submit

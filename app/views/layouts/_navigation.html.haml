@@ -32,6 +32,10 @@
                   %li{:class => 'dropdown'}
                     = link_to 'Job Types', job_types_path
 
+                - if can? :index, Organization
+                  %li{:class => 'dropdown'}
+                    = link_to 'Organizations', organizations_path
+
                 - if can? :index, Program
                   %li{:class => 'dropdown'}
                     = link_to 'Programs', programs_path
